@@ -20,16 +20,12 @@ jobs:
     - name: Build
       id: Build
       run: dotnet build --configuration Release -p:DisableZipRelease=true
-    - name: GetArtifactName
-      id: ArtifactName
-      run: type ./CITest/bin/Release/zipname.txt
-    - name: Echo Name
-      run: echo $TEXT -- $BUILDTEXT
+    - name: Echo Filename
+      run: echo $BUILDTEXT
       env:
-        TEXT: Text=${{ steps.ArtifactName.outputs.text }}
-        BUILDTEXT: Text=${{ steps.Build.outputs.text }}
+        BUILDTEXT: Filename=${{ steps.Build.outputs.filename }}
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
       with:
-        name: ${{ steps.ArtifactName.outputs.text }}
+        name: ${{ steps.Build.outputs.filename }}
         path: ./CITest/bin/Release/Output
