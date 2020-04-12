@@ -29,5 +29,5 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
       with:
-        name: CITest-${{ github.sha }}
-        path: ./CITest/bin/Release/zip
+        name: ${{ steps.ArtifactName.outputs.text }}
+        path: ./CITest/bin/Release/Output
