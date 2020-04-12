@@ -13,8 +13,11 @@
       <Output TaskParameter="GameVersion" PropertyName="GameVersion" />
       <Output TaskParameter="AssemblyVersion" PropertyName="AssemblyVersion" />
     </GetManifestInfo>
+    <GetCommitHash ProjectDir="$(ProjectDir)">
+      <Output TaskParameter="CommitShortHash" PropertyName="CommitShortHash" />
+    </GetCommitHash>
     <Message Text="PluginVersion: $(PluginVersion), AssemblyVersion: $(AssemblyVersion), GameVersion: $(GameVersion)" Importance="high" />
-    <Message Text="::set-output name=text::$(AssemblyName)-$(PluginVersion)-bs$(GameVersion)-$(CommitShortHash).zip" />
+    <Message Text="::set-output name=text::$(AssemblyName)-$(PluginVersion)-bs$(GameVersion)-$(CommitShortHash).zip" Importance="high" />
     <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFiles="$(OutputPath)Output\Plugins\$(AssemblyName).dll" />
     <WriteLinesToFile
       File="$(OutputPath)zipname.txt"
