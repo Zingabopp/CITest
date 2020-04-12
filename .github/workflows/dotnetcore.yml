@@ -28,13 +28,13 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
       with:
-        name: ${{ steps.Build.outputs.filename }}.zip
+        name: ${{ steps.Build.outputs.filename }}
         path: ./CITest/bin/Release/Output
     - name: CopyPDB
       working-directory: ./CITest/bin/Release
-      run: copy ${{ steps.Build.outputs.assemblyname }}.pdb Output/${{ steps.Build.outputs.assemblyname }}.pdb
+      run: copy ${{ steps.Build.outputs.assemblyname }}.pdb Output/Plugins/${{ steps.Build.outputs.assemblyname }}.pdb
     - name: Upload Artifact With PDB
       uses: actions/upload-artifact@v1
       with:
-        name: ${{ steps.Build.outputs.filename }}_WithPDB.zip
+        name: ${{ steps.Build.outputs.filename }}_WithPDB
         path: ./CITest/bin/Release/Output
