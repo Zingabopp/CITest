@@ -21,7 +21,7 @@ jobs:
       id: Build
       run: dotnet build --configuration Release -p:DisableZipRelease=true
     - name: Echo Filename
-      run: echo $BUILDTEXT ($(ASSEMBLYNAME))
+      run: echo $BUILDTEXT ($ASSEMBLYNAME)
       env:
         BUILDTEXT: Filename=${{ steps.Build.outputs.filename }}
         ASSEMBLYNAME: AssemblyName=${{ steps.Build.outputs.assemblyname }}
