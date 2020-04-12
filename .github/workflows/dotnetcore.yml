@@ -21,11 +21,20 @@ jobs:
       id: Build
       run: dotnet build --configuration Release -p:DisableZipRelease=true
     - name: Echo Filename
-      run: echo $BUILDTEXT
+      run: echo $BUILDTEXT ($(ASSEMBLYNAME))
       env:
         BUILDTEXT: Filename=${{ steps.Build.outputs.filename }}
+        ASSEMBLYNAME: AssemblyName=${{ steps.Build.outputs.assemblyname }}
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
       with:
-        name: ${{ steps.Build.outputs.filename }}
+        name: ${{ steps.Build.outputs.filename }}.zip
+        path: ./CITest/bin/Release/Output
+    - name: CopyPDB
+      working-directory: ./CITest/bin/Release
+      run: copy ${{ steps.Build.outputs.assemblyname }}.pdb Output/${{ steps.Build.outputs.assemblyname }}.pdb
+    - name: Upload Artifact With PDB
+      uses: actions/upload-artifact@v1
+      with:
+        name: ${{ steps.Build.outputs.filename }}_WithPDB.zip
         path: ./CITest/bin/Release/Output
