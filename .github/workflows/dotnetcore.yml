@@ -1,0 +1,33 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+    - name: Build
+      run: dotnet build --configuration Release -p:DisableZipRelease=true
+    - name: GetArtifactName
+      id: ArtifactName
+      run: type ./CITest/bin/Release/zipname.txt
+    - name: Echo Name
+      run: echo $TEXT
+      env:
+        TEXT: Text=${{ steps.ArtifactName.outputs.text }}
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: CITest-${{ github.sha }}
+        path: ./CITest/bin/Release/zip
