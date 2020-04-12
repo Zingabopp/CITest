@@ -15,6 +15,7 @@
     </GetManifestInfo>
     <Message Text="PluginVersion: $(PluginVersion), AssemblyVersion: $(AssemblyVersion), GameVersion: $(GameVersion)" Importance="high" />
     <Message Text="::set-output name=text::$(AssemblyName)-$(PluginVersion)-bs$(GameVersion)-$(CommitShortHash).zip" />
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFiles="$(OutputPath)Output\Plugins\$(AssemblyName).dll" />
     <WriteLinesToFile
       File="$(OutputPath)zipname.txt"
       Overwrite="true"
