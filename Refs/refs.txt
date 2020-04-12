@@ -1,0 +1,22 @@
+::from ./bsinstalldir.txt
+"Beat Saber_Data/
+""Managed/
+"""HMLib.dll?virt
+"""HMUI.dll?virt
+"""Main.dll?virt
+"""IPA.
+""""Loader.dll
+"""Unity.TextMeshPro.dll
+"""UnityEngine.
+""""dll
+""""CoreModule.dll
+""""AudioModule.dll
+""""UI
+""""".dll
+"Libs/
+""0Harmony.dll
+""Newtonsoft.Json.dll
+"Plugins/
+""BS_Utils.dll
+""BSML.dll
+""SongCore.dll
