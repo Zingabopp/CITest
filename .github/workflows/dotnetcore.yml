@@ -21,7 +21,7 @@ jobs:
       run: dotnet build --configuration Release -p:DisableZipRelease=true
     - name: GetArtifactName
       id: ArtifactName
-      run: cat ./CITest/bin/Release/zipname.txt
+      run: type ./CITest/bin/Release/zipname.txt
     - name: Echo Name
       run: echo $TEXT
       env:
